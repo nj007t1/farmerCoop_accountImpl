@@ -65,6 +65,7 @@ local.properties
 target/
 
 ### Maven ###
+pom.properties
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
