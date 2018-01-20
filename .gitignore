@@ -65,7 +65,6 @@ local.properties
 target/
 
 ### Maven ###
-pom.properties
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -74,6 +73,7 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+target/m2e-wtp/web-resources/META-INF/maven/edu.ntut.java007/farmerCoop_accountImpl/pom.properties
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
