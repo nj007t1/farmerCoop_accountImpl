@@ -63,6 +63,7 @@ local.properties
 ### Java-Web ###
 ## ignoring target file
 target/
+*.MF
 
 ### Maven ###
 pom.xml.tag
@@ -79,3 +80,4 @@ buildNumber.properties
 
 
 # End of https://www.gitignore.io/api/maven,eclipse,java-web
+/build/
