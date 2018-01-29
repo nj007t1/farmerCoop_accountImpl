@@ -23,7 +23,7 @@ public class MemberDAO {
 		
 	}
 	
-	private static final String SELECT_BY_EMAIL = "SELECT*FROM SUSER WHERE USER_EMAIL=?";
+	private static final String SELECT_BY_EMAIL = "SELECT USER_OID,USER_NAME,USER_EMAIL,USER_PASSWD,USER_STATUS,USER_ZIP_CODE,USER_ADDRESS,USER_MOBILE,USER_MOBILE,USER_TEL_EXT,FARMER_ZIP_CODE,FARMER_ADDRESS,FARMER_ADDRESS,FARMER_TEL,FARMER_TEL_EXT,FARMER_PROFILE,USER_LAST_LOGIN_TIME,USER_APPLY_DATE,USER_EMAIL_VAL_CODE FROM SUSER WHERE USER_EMAIL=?";
 		
 	
 	
@@ -39,22 +39,22 @@ public class MemberDAO {
 			rset =stmt.executeQuery();
 			if(rset.next()){
 				result = new MemberBean();
-				result.setUSER_OID(rset.getInt("USER_OID"));
-				result.setUSER_EMAIL(rset.getString("USER_EMAIL"));
-				result.setUSER_PASSWD(rset.getString("USER_PASSWD"));
-				result.setUSER_STATUS(rset.getString("USER_STATUS"));
-				result.setUSER_ZIP_CODE(rset.getString("USER_ZIP_CODE"));
-				result.setUSER_ADDRESS(rset.getString("USER_ADDRESS"));
-				result.setUSER_MOBILE(rset.getString("USER_MOBILE"));
-				result.setUSER_TEL_EXT(rset.getString("USER_TEL_EXT"));
-				result.setFARMER_ZIP_CODE(rset.getString("FARMER_ZIP_CODE"));
-				result.setFARMER_ADDRESS(rset.getString("FARMER_ADDRESS"));
-				result.setFARMER_MOBILE(rset.getString("FARMER_MOBILE"));
-				result.setFARMER_TEL(rset.getString("FARMER_TEL"));
-				result.setFARMER_PROFILE(rset.getClob("FARMER_PROFILE"));
-				result.setUSER_LAST_LOGIN_TIME(rset.getDate("USER_LAST_LOGIN_TIME"));
-				result.setUSER_APPLY_DATE(rset.getDate("USER_APPLY_DATE"));
-				result.setUSER_EMAIL_VAL_CODE(rset.getString("USER_EMAIL_VAL_CODE"));
+				result.setUser_OID(rset.getInt("USER_OID"));
+				result.setUser_EMAIL(rset.getString("USER_EMAIL"));
+				result.setUser_PASSWD(rset.getString("USER_PASSWD"));
+				result.setUser_STATUS(rset.getString("USER_STATUS"));
+				result.setUser_ZIP_CODE(rset.getString("USER_ZIP_CODE"));
+				result.setUser_ADDRESS(rset.getString("USER_ADDRESS"));
+				result.setUser_MOBILE(rset.getString("USER_MOBILE"));
+				result.setUser_TEL_EXT(rset.getString("USER_TEL_EXT"));
+				result.setFarmer_ZIP_CODE(rset.getString("FARMER_ZIP_CODE"));
+				result.setFarmer_ADDRESS(rset.getString("FARMER_ADDRESS"));
+				result.setFarmer_MOBILE(rset.getString("FARMER_MOBILE"));
+				result.setFarmer_TEL(rset.getString("FARMER_TEL"));
+				result.setFarmer_PROFILE(rset.getClob("FARMER_PROFILE"));
+				result.setUser_LAST_LOGIN_TIME(rset.getDate("USER_LAST_LOGIN_TIME"));
+				result.setUser_APPLY_DATE(rset.getDate("USER_APPLY_DATE"));
+				result.setUser_EMAIL_VAL_CODE(rset.getString("USER_EMAIL_VAL_CODE"));
 			}
 		} catch (SQLException e) {  
 			e.printStackTrace();
@@ -86,7 +86,7 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public final String SELECT = "SELECT * FROM SUSER WHERE USER_EMAIL=?";
+	public final String SELECT = "SELECT USER_OID,USER_NAME,USER_EMAIL,USER_PASSWD,USER_STATUS,USER_ZIP_CODE,USER_ADDRESS,USER_MOBILE,USER_MOBILE,USER_TEL_EXT,FARMER_ZIP_CODE,FARMER_ADDRESS,FARMER_ADDRESS,FARMER_TEL,FARMER_TEL_EXT,FARMER_PROFILE,USER_LAST_LOGIN_TIME,USER_APPLY_DATE,USER_EMAIL_VAL_CODE FROM SUSER WHERE USER_EMAIL=?";
 
 	final MemberBean findByPrimaryKey(String email) {
 		MemberBean mb = new MemberBean();
@@ -97,7 +97,7 @@ public class MemberDAO {
 				if (rs.next()) {
 //					String password = rs.getString(2);
 //					String checkpassword = rs.getString(3);
-					mb.setUSER_EMAIL(rs.getString("USER_EMAIL"));
+					mb.setUser_EMAIL(rs.getString("USER_EMAIL"));
 					MemberBean user = new MemberBean(email);
 
 					return user;
@@ -117,9 +117,9 @@ public class MemberDAO {
 
 	public void insertUser(MemberBean bean) {
 		try (Connection conn = ds.getConnection(); PreparedStatement stmt = conn.prepareStatement(INSERT)) {
-			stmt.setString(1, bean.getUSER_EMAIL());
-			stmt.setString(2, bean.getUSER_NAME());
-			stmt.setString(3, bean.getUSER_PASSWD());
+			stmt.setString(1, bean.getUser_EMAIL());
+			stmt.setString(2, bean.getUser_NAME());
+			stmt.setString(3, bean.getUser_PASSWD());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

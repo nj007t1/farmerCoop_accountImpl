@@ -4,154 +4,193 @@ import java.sql.Clob;
 import java.sql.Date;
 
 public class MemberBean {
-	int USER_OID;
-	String USER_NAME;
-	String USER_EMAIL;
-	String USER_PASSWD;
-	String USER_STATUS;
-	String USER_ZIP_CODE;
-	String USER_ADDRESS;
-	String USER_MOBILE;
-	String USER_TEL;
-	String USER_TEL_EXT;
-	String FARMER_ZIP_CODE;
-	String FARMER_ADDRESS;
-	String FARMER_MOBILE;
-	String FARMER_TEL;
-	String FARMER_TEL_EXT;
-	Clob FARMER_PROFILE;
-	Date USER_LAST_LOGIN_TIME;
-	public MemberBean(String uSER_EMAIL) {
-		super();
-		USER_EMAIL = uSER_EMAIL;
-	}
-
+	int user_OID;
+	String user_NAME;
+	String user_EMAIL;
+	String user_PASSWD;
+	String user_STATUS;
+	String user_ZIP_CODE;
+	String user_ADDRESS;
+	String user_MOBILE;
+	String user_TEL;
+	String user_TEL_EXT;
+	String farmer_ZIP_CODE;
+	String farmer_ADDRESS;
+	String farmer_MOBILE;
+	String farmer_TEL;
+	String farmer_TEL_EXT;
+	Clob farmer_PROFILE;
+	Date user_LAST_LOGIN_TIME;
+	Date user_APPLY_DATE;
+	String user_EMAIL_VAL_CODE;
+	
 	public MemberBean() {
 		super();
 	}
-	Date USER_APPLY_DATE;
-	String USER_EMAIL_VAL_CODE;
-	
-	public MemberBean(String uSER_NAME, String uSER_EMAIL, String uSER_PASSWD) {
+
+	public MemberBean(String user_NAME, String user_EMAIL, String user_PASSWD) {
 		super();
-		USER_NAME = uSER_NAME;
-		USER_EMAIL = uSER_EMAIL;
-		USER_PASSWD = uSER_PASSWD;
+		this.user_NAME = user_NAME;
+		this.user_EMAIL = user_EMAIL;
+		this.user_PASSWD = user_PASSWD;
 	}
-	
-	public String getUSER_EMAIL_VAL_CODE() {
-		return USER_EMAIL_VAL_CODE;
+
+	public MemberBean(String user_EMAIL) {
+		super();
+		this.user_EMAIL = user_EMAIL;
 	}
-	public int getUSER_OID() {
-		return USER_OID;
+
+	public int getUser_OID() {
+		return user_OID;
 	}
-	public void setUSER_OID(int uSER_OID) {
-		USER_OID = uSER_OID;
+
+	public void setUser_OID(int user_OID) {
+		this.user_OID = user_OID;
 	}
-	public String getUSER_NAME() {
-		return USER_NAME;
+
+	public String getUser_NAME() {
+		return user_NAME;
 	}
-	public void setUSER_NAME(String uSER_NAME) {
-		USER_NAME = uSER_NAME;
+
+	public void setUser_NAME(String user_NAME) {
+		this.user_NAME = user_NAME;
 	}
-	public String getUSER_EMAIL() {
-		return USER_EMAIL;
+
+	public String getUser_EMAIL() {
+		return user_EMAIL;
 	}
-	public void setUSER_EMAIL(String uSER_EMAIL) {
-		USER_EMAIL = uSER_EMAIL;
+
+	public void setUser_EMAIL(String user_EMAIL) {
+		this.user_EMAIL = user_EMAIL;
 	}
-	public String getUSER_PASSWD() {
-		return USER_PASSWD;
+
+	public String getUser_PASSWD() {
+		return user_PASSWD;
 	}
-	public void setUSER_PASSWD(String uSER_PASSWD) {
-		USER_PASSWD = uSER_PASSWD;
+
+	public void setUser_PASSWD(String user_PASSWD) {
+		this.user_PASSWD = user_PASSWD;
 	}
-	public String getUSER_STATUS() {
-		return USER_STATUS;
+
+	public String getUser_STATUS() {
+		return user_STATUS;
 	}
-	public void setUSER_STATUS(String uSER_STATUS) {
-		USER_STATUS = uSER_STATUS;
+
+	public void setUser_STATUS(String user_STATUS) {
+		this.user_STATUS = user_STATUS;
 	}
-	public String getUSER_ZIP_CODE() {
-		return USER_ZIP_CODE;
+
+	public String getUser_ZIP_CODE() {
+		return user_ZIP_CODE;
 	}
-	public void setUSER_ZIP_CODE(String uSER_ZIP_CODE) {
-		USER_ZIP_CODE = uSER_ZIP_CODE;
+
+	public void setUser_ZIP_CODE(String user_ZIP_CODE) {
+		this.user_ZIP_CODE = user_ZIP_CODE;
 	}
-	public String getUSER_ADDRESS() {
-		return USER_ADDRESS;
+
+	public String getUser_ADDRESS() {
+		return user_ADDRESS;
 	}
-	public void setUSER_ADDRESS(String uSER_ADDRESS) {
-		USER_ADDRESS = uSER_ADDRESS;
+
+	public void setUser_ADDRESS(String user_ADDRESS) {
+		this.user_ADDRESS = user_ADDRESS;
 	}
-	public String getUSER_MOBILE() {
-		return USER_MOBILE;
+
+	public String getUser_MOBILE() {
+		return user_MOBILE;
 	}
-	public void setUSER_MOBILE(String uSER_MOBILE) {
-		USER_MOBILE = uSER_MOBILE;
+
+	public void setUser_MOBILE(String user_MOBILE) {
+		this.user_MOBILE = user_MOBILE;
 	}
-	public String getUSER_TEL() {
-		return USER_TEL;
+
+	public String getUser_TEL() {
+		return user_TEL;
 	}
-	public void setUSER_TEL(String uSER_TEL) {
-		USER_TEL = uSER_TEL;
+
+	public void setUser_TEL(String user_TEL) {
+		this.user_TEL = user_TEL;
 	}
-	public String getUSER_TEL_EXT() {
-		return USER_TEL_EXT;
+
+	public String getUser_TEL_EXT() {
+		return user_TEL_EXT;
 	}
-	public void setUSER_TEL_EXT(String uSER_TEL_EXT) {
-		USER_TEL_EXT = uSER_TEL_EXT;
+
+	public void setUser_TEL_EXT(String user_TEL_EXT) {
+		this.user_TEL_EXT = user_TEL_EXT;
 	}
-	public String getFARMER_ZIP_CODE() {
-		return FARMER_ZIP_CODE;
+
+	public String getFarmer_ZIP_CODE() {
+		return farmer_ZIP_CODE;
 	}
-	public void setFARMER_ZIP_CODE(String fARMER_ZIP_CODE) {
-		FARMER_ZIP_CODE = fARMER_ZIP_CODE;
+
+	public void setFarmer_ZIP_CODE(String farmer_ZIP_CODE) {
+		this.farmer_ZIP_CODE = farmer_ZIP_CODE;
 	}
-	public String getFARMER_ADDRESS() {
-		return FARMER_ADDRESS;
+
+	public String getFarmer_ADDRESS() {
+		return farmer_ADDRESS;
 	}
-	public void setFARMER_ADDRESS(String fARMER_ADDRESS) {
-		FARMER_ADDRESS = fARMER_ADDRESS;
+
+	public void setFarmer_ADDRESS(String farmer_ADDRESS) {
+		this.farmer_ADDRESS = farmer_ADDRESS;
 	}
-	public String getFARMER_MOBILE() {
-		return FARMER_MOBILE;
+
+	public String getFarmer_MOBILE() {
+		return farmer_MOBILE;
 	}
-	public void setFARMER_MOBILE(String fARMER_MOBILE) {
-		FARMER_MOBILE = fARMER_MOBILE;
+
+	public void setFarmer_MOBILE(String farmer_MOBILE) {
+		this.farmer_MOBILE = farmer_MOBILE;
 	}
-	public String getFARMER_TEL() {
-		return FARMER_TEL;
+
+	public String getFarmer_TEL() {
+		return farmer_TEL;
 	}
-	public void setFARMER_TEL(String fARMER_TEL) {
-		FARMER_TEL = fARMER_TEL;
+
+	public void setFarmer_TEL(String farmer_TEL) {
+		this.farmer_TEL = farmer_TEL;
 	}
-	public String getFARMER_TEL_EXT() {
-		return FARMER_TEL_EXT;
+
+	public String getFarmer_TEL_EXT() {
+		return farmer_TEL_EXT;
 	}
-	public void setFARMER_TEL_EXT(String fARMER_TEL_EXT) {
-		FARMER_TEL_EXT = fARMER_TEL_EXT;
+
+	public void setFarmer_TEL_EXT(String farmer_TEL_EXT) {
+		this.farmer_TEL_EXT = farmer_TEL_EXT;
 	}
-	public Clob getFARMER_PROFILE() {
-		return FARMER_PROFILE;
+
+	public Clob getFarmer_PROFILE() {
+		return farmer_PROFILE;
 	}
-	public void setFARMER_PROFILE(Clob fARMER_PROFILE) {
-		FARMER_PROFILE = fARMER_PROFILE;
+
+	public void setFarmer_PROFILE(Clob farmer_PROFILE) {
+		this.farmer_PROFILE = farmer_PROFILE;
 	}
-	public Date getUSER_LAST_LOGIN_TIME() {
-		return USER_LAST_LOGIN_TIME;
+
+	public Date getUser_LAST_LOGIN_TIME() {
+		return user_LAST_LOGIN_TIME;
 	}
-	public void setUSER_LAST_LOGIN_TIME(Date uSER_LAST_LOGIN_TIME) {
-		USER_LAST_LOGIN_TIME = uSER_LAST_LOGIN_TIME;
+
+	public void setUser_LAST_LOGIN_TIME(Date user_LAST_LOGIN_TIME) {
+		this.user_LAST_LOGIN_TIME = user_LAST_LOGIN_TIME;
 	}
-	public Date getUSER_APPLY_DATE() {
-		return USER_APPLY_DATE;
+
+	public Date getUser_APPLY_DATE() {
+		return user_APPLY_DATE;
 	}
-	public void setUSER_APPLY_DATE(Date uSER_APPLY_DATE) {
-		USER_APPLY_DATE = uSER_APPLY_DATE;
+
+	public void setUser_APPLY_DATE(Date user_APPLY_DATE) {
+		this.user_APPLY_DATE = user_APPLY_DATE;
 	}
-	public void setUSER_EMAIL_VAL_CODE(String uSER_EMAIL_VAL_CODE) {
-		USER_EMAIL_VAL_CODE = uSER_EMAIL_VAL_CODE;
+
+	public String getUser_EMAIL_VAL_CODE() {
+		return user_EMAIL_VAL_CODE;
 	}
+
+	public void setUser_EMAIL_VAL_CODE(String user_EMAIL_VAL_CODE) {
+		this.user_EMAIL_VAL_CODE = user_EMAIL_VAL_CODE;
+	}
+
 	
 }
