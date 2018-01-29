@@ -39,22 +39,22 @@ public class MemberDAO {
 			rset =stmt.executeQuery();
 			if(rset.next()){
 				result = new MemberBean();
-				result.setUser_OID(rset.getInt("USER_OID"));
-				result.setUser_EMAIL(rset.getString("USER_EMAIL"));
-				result.setUser_PASSWD(rset.getString("USER_PASSWD"));
-				result.setUser_STATUS(rset.getString("USER_STATUS"));
-				result.setUser_ZIP_CODE(rset.getString("USER_ZIP_CODE"));
-				result.setUser_ADDRESS(rset.getString("USER_ADDRESS"));
-				result.setUser_MOBILE(rset.getString("USER_MOBILE"));
-				result.setUser_TEL_EXT(rset.getString("USER_TEL_EXT"));
-				result.setFarmer_ZIP_CODE(rset.getString("FARMER_ZIP_CODE"));
-				result.setFarmer_ADDRESS(rset.getString("FARMER_ADDRESS"));
-				result.setFarmer_MOBILE(rset.getString("FARMER_MOBILE"));
-				result.setFarmer_TEL(rset.getString("FARMER_TEL"));
-				result.setFarmer_PROFILE(rset.getClob("FARMER_PROFILE"));
-				result.setUser_LAST_LOGIN_TIME(rset.getDate("USER_LAST_LOGIN_TIME"));
-				result.setUser_APPLY_DATE(rset.getDate("USER_APPLY_DATE"));
-				result.setUser_EMAIL_VAL_CODE(rset.getString("USER_EMAIL_VAL_CODE"));
+				result.setUserOid(rset.getInt("USER_OID"));
+				result.setUserEmail(rset.getString("USER_EMAIL"));
+				result.setUserPasswd(rset.getString("USER_PASSWD"));
+				result.setUserStatus(rset.getString("USER_STATUS"));
+				result.setUserZipCode(rset.getString("USER_ZIP_CODE"));
+				result.setUserAddress(rset.getString("USER_ADDRESS"));
+				result.setUserMobile(rset.getString("USER_MOBILE"));
+				result.setUserTelExt(rset.getString("USER_TEL_EXT"));
+				result.setFarmerZipCode(rset.getString("FARMER_ZIP_CODE"));
+				result.setFarmerAddress(rset.getString("FARMER_ADDRESS"));
+				result.setFarmerMobile(rset.getString("FARMER_MOBILE"));
+				result.setFarmerTel(rset.getString("FARMER_TEL"));
+				result.setFarmerProfile(rset.getClob("FARMER_PROFILE"));
+				result.setUserLastLoginTime(rset.getDate("USER_LAST_LOGIN_TIME"));
+				result.setUserApplyDate(rset.getDate("USER_APPLY_DATE"));
+				result.setUserEmailValCode(rset.getString("USER_EMAIL_VAL_CODE"));
 			}
 		} catch (SQLException e) {  
 			e.printStackTrace();
@@ -97,7 +97,7 @@ public class MemberDAO {
 				if (rs.next()) {
 //					String password = rs.getString(2);
 //					String checkpassword = rs.getString(3);
-					mb.setUser_EMAIL(rs.getString("USER_EMAIL"));
+					mb.setUserEmail(rs.getString("USER_EMAIL"));
 					MemberBean user = new MemberBean(email);
 
 					return user;
@@ -117,9 +117,9 @@ public class MemberDAO {
 
 	public void insertUser(MemberBean bean) {
 		try (Connection conn = ds.getConnection(); PreparedStatement stmt = conn.prepareStatement(INSERT)) {
-			stmt.setString(1, bean.getUser_EMAIL());
-			stmt.setString(2, bean.getUser_NAME());
-			stmt.setString(3, bean.getUser_PASSWD());
+			stmt.setString(1, bean.getUserEmail());
+			stmt.setString(2, bean.getUserName());
+			stmt.setString(3, bean.getUserPasswd());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

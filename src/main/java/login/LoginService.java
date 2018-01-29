@@ -6,7 +6,7 @@ public class LoginService {
 		MemberDAO dao = new MemberDAO();
 		MemberBean mb = dao.select(email);
 		
-		if(mb != null && password.equals(mb.user_PASSWD)){
+		if(mb != null && password.equals(mb.userPasswd)){
 			return mb;
 		}
 		return null;
