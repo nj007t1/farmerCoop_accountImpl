@@ -10,7 +10,7 @@
 <body>
 	<fieldset>
 		<legend>登入會員</legend>
-		<form action="login.do"  method="POST">
+		<form action="<c:url value='/login.do' />"  method="POST">
 		<span>E-mail</span>
 		<input type="text" name="userMail">
 		<font color='red' size='-1'>${errorMasgKey.mailEmptyError}</font><p/>

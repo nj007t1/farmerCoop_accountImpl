@@ -12,15 +12,13 @@
 		<c:when test="${empty LoginOK}">
 			<a href="login.jsp">登入</a>
 		</c:when>
-		<c:otherwise>
-			<div class=''>
+		<c:otherwise>	
 				<a href="home.jsp"><c:remove var="LoginOK" />登出</a>
-			</div>
 		</c:otherwise>
 	</c:choose>
 	
 	<a href="signin.jsp">註冊</a>
 	<h1>這是首頁</h1>
-	<a href="manage/loginHome.jsp">需要登入才能預覽</a>
+	<a href="<c:url value='manage/loginHome.jsp' />">需要登入才能預覽</a>
 </body>
 </html>
