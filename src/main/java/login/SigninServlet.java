@@ -1,6 +1,7 @@
 package login;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -39,9 +40,9 @@ public class SigninServlet extends HttpServlet {
 	}
 
 	public static void main(String[] args) {
-		String password = "test12355_";
+		String password = "aaaaaaaa";
 		System.out.println(password.length());
-		if (password.matches("^[\\w]{8,20}$")) {
+		if (password.matches("^(?=.*\\d)(?=.*[a-zA-Z]).{8,20}$")) {
 			System.out.println("true");
 		} else {
 			System.out.println("false");
@@ -73,7 +74,7 @@ public class SigninServlet extends HttpServlet {
 		if ((password.length() > 20) || (password.length() < 8)) {
 			errorMessage.put("password", "密碼長度需8-20個字元");
 		}
-		if (!password.matches("^[\\w]{8,20}$")) {
+		if (!password.matches("^(?=.*\\d)(?=.*[a-zA-Z]).{8,20}$")) {
 			errorMessage.put("password", "密碼須包含英文、數字");
 		}
 		if (!password.equals(againpassword)) {
@@ -85,13 +86,21 @@ public class SigninServlet extends HttpServlet {
 		if (userBean != null) {
 			errorMessage.put("email", "電子信箱重複,請重新輸入");
 		}
+		
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddHHmmss");//變成16字元的格式
+		java.sql.Timestamp applyDate =  new  java.sql.Timestamp(System.currentTimeMillis());//取得現在時間
+		String key =sdf.format(applyDate );//取得的時間轉換成字串
+		String encrypt = SecurityUtils.encryptString(key,password);//時間與密碼進行加密
+		
+		
 		if (!errorMessage.isEmpty()) {
 			RequestDispatcher rd = request.getRequestDispatcher("/signin.jsp");
 			rd.forward(request, response);
 			return;
 		}
 		
-		MemberBean user = new MemberBean(email, email, password);
+		MemberBean user = new MemberBean(email, email, encrypt,applyDate);
 		dao.insertUser(user);
 		request.setAttribute("userBean", user);
 

@@ -1,7 +1,7 @@
 package login;
 
 import java.sql.Clob;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class MemberBean {
 	int userOid;
@@ -20,10 +20,10 @@ public class MemberBean {
 	String farmerTel;
 	String farmerTelExt;
 	Clob farmerProfile;
-	Date userLastLoginTime;
-	Date userApplyDate;
+	Timestamp userLastLoginTime;
+	Timestamp userApplyDate;
 	String userEmailValCode;
-	
+
 	public MemberBean() {
 		super();
 	}
@@ -38,6 +38,11 @@ public class MemberBean {
 		this.userName = userName;
 		this.userEmail = userEmail;
 		this.userPasswd = userPasswd;
+	}
+
+	public MemberBean(String userName, String userEmail, String userPasswd, Timestamp userApplyDate) {
+		this(userName, userEmail, userPasswd);
+		this.userApplyDate = userApplyDate;
 	}
 
 	public int getUserOid() {
@@ -168,19 +173,19 @@ public class MemberBean {
 		this.farmerProfile = farmerProfile;
 	}
 
-	public Date getUserLastLoginTime() {
+	public Timestamp getUserLastLoginTime() {
 		return userLastLoginTime;
 	}
 
-	public void setUserLastLoginTime(Date userLastLoginTime) {
+	public void setUserLastLoginTime(Timestamp userLastLoginTime) {
 		this.userLastLoginTime = userLastLoginTime;
 	}
 
-	public Date getUserApplyDate() {
+	public Timestamp getUserApplyDate() {
 		return userApplyDate;
 	}
 
-	public void setUserApplyDate(Date userApplyDate) {
+	public void setUserApplyDate(Timestamp userApplyDate) {
 		this.userApplyDate = userApplyDate;
 	}
 
@@ -192,7 +197,4 @@ public class MemberBean {
 		this.userEmailValCode = userEmailValCode;
 	}
 
-	
-	
-	
 }

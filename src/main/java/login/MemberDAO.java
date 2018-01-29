@@ -52,8 +52,8 @@ public class MemberDAO {
 				result.setFarmerMobile(rset.getString("FARMER_MOBILE"));
 				result.setFarmerTel(rset.getString("FARMER_TEL"));
 				result.setFarmerProfile(rset.getClob("FARMER_PROFILE"));
-				result.setUserLastLoginTime(rset.getDate("USER_LAST_LOGIN_TIME"));
-				result.setUserApplyDate(rset.getDate("USER_APPLY_DATE"));
+				result.setUserLastLoginTime(rset.getTimestamp("USER_LAST_LOGIN_TIME"));
+				result.setUserApplyDate(rset.getTimestamp("USER_APPLY_DATE"));
 				result.setUserEmailValCode(rset.getString("USER_EMAIL_VAL_CODE"));
 			}
 		} catch (SQLException e) {  
@@ -113,13 +113,14 @@ public class MemberDAO {
 	}
 
 	private static final String INSERT = "INSERT INTO suser(user_email, user_name, user_passwd, USER_APPLY_DATE)"
-			+ " values (?, ?, ?, sysdate())";
+			+ " values (?, ?, ?, ?)";
 
 	public void insertUser(MemberBean bean) {
 		try (Connection conn = ds.getConnection(); PreparedStatement stmt = conn.prepareStatement(INSERT)) {
 			stmt.setString(1, bean.getUserEmail());
 			stmt.setString(2, bean.getUserName());
 			stmt.setString(3, bean.getUserPasswd());
+			stmt.setTimestamp(4, bean.getUserApplyDate());
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
