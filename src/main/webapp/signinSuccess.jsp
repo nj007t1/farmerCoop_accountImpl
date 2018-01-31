@@ -9,7 +9,7 @@
 </head>
 <body>
 <h1>恭喜您成為會員</h1>
-<h2>電子信箱${MemberBean.USER_EMAIL}的資料申請成功</h2><br>
+<h2>電子信箱${MemberBean.email}的資料申請成功</h2><br>
 
 <a href="prototype/manage/loginHome.html">回首頁</a>
 </body>

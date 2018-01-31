@@ -1,6 +1,7 @@
 package login;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,9 +38,23 @@ public class LoginServlet extends HttpServlet {
 			errorMsgMap.put("passwordEmptyError", "請輸入密碼");
 			System.out.println("servlet: empty password");
 		}
-
+		
+		
+//		
+//		MemberDAO dao = new MemberDAO();
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddHHmmss");
+//		java.sql.Timestamp applyDate = new java.sql.Timestamp(System.currentTimeMillis());
+//		String key = sdf.format(applyDate);
+//		String encrypt = SecurityUtils.encryptString(key, userPassword);
+//		MemberBean bean = new MemberBean(userMail, userMail, encrypt, applyDate);
+//		dao.select(bean);
+		
+		
+		
+		
+		
 		LoginService ls = new LoginService();
-		MemberBean mb = ls.checkPassword(userMail, userPassword);
+		MemberBean mb = ls.checkLoginInfo(userMail, userPassword);
 
 		if (mb != null) {
 			session.setAttribute("LoginOK", mb);

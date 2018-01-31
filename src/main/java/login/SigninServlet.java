@@ -26,7 +26,7 @@ public class SigninServlet extends HttpServlet {
 		super.doGet(req, resp);
 		doPost(req, resp);
 	}
-
+	//信箱格式
 	private boolean validateMail(String email) {
 
 		String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
@@ -82,17 +82,14 @@ public class SigninServlet extends HttpServlet {
 		}
 
 		MemberDAO dao = new MemberDAO();
-		MemberBean userBean = dao.findByPrimaryKey(email);
+		MemberBean userBean = dao.findByEmail(email);
 		if (userBean != null) {
 			errorMessage.put("email", "電子信箱重複,請重新輸入");
 		}
 		
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddHHmmss");//變成16字元的格式
+		//密碼加密
 		java.sql.Timestamp applyDate =  new  java.sql.Timestamp(System.currentTimeMillis());//取得現在時間
-		String key =sdf.format(applyDate );//取得的時間轉換成字串
-		String encrypt = SecurityUtils.encryptString(key,password);//時間與密碼進行加密
-		
+		String encrypt =  SecurityUtils.getEncryptPassword(password, applyDate);//時間與密碼進行加密
 		
 		if (!errorMessage.isEmpty()) {
 			RequestDispatcher rd = request.getRequestDispatcher("/signin.jsp");

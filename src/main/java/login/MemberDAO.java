@@ -16,28 +16,35 @@ public class MemberDAO {
 	public MemberDAO() {
 		try {
 			Context context = new InitialContext();
-			ds = (DataSource)context.lookup("java:comp/env/jdbc/sUserDataBase");
+			ds = (DataSource) context.lookup("java:comp/env/jdbc/sUserDataBase");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	private static final String SELECT_BY_EMAIL = "SELECT USER_OID,USER_NAME,USER_EMAIL,USER_PASSWD,USER_STATUS,USER_ZIP_CODE,USER_ADDRESS,USER_MOBILE,USER_MOBILE,USER_TEL_EXT,FARMER_ZIP_CODE,FARMER_ADDRESS,FARMER_ADDRESS,FARMER_TEL,FARMER_TEL_EXT,FARMER_PROFILE,USER_LAST_LOGIN_TIME,USER_APPLY_DATE,USER_EMAIL_VAL_CODE FROM SUSER WHERE USER_EMAIL=?";
-		
-	
-	
-	public MemberBean select(String id){
+
+	StringBuilder sb = new StringBuilder();
+
+	public MemberBean findByEmail(String userEmail) {
 		MemberBean result = null;
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rset = null;
 		try {
 			conn = ds.getConnection();
-			stmt = conn.prepareStatement(SELECT_BY_EMAIL);
-			stmt.setString(1, id);
-			rset =stmt.executeQuery();
-			if(rset.next()){
+
+			sb.append("SELECT USER_OID,USER_NAME,USER_EMAIL,USER_PASSWD,USER_STATUS,");
+			sb.append("USER_ZIP_CODE,USER_ADDRESS,USER_MOBILE,USER_TEL_EXT,");
+			sb.append("FARMER_ZIP_CODE,FARMER_ADDRESS,FARMER_MOBILE,FARMER_TEL,");
+			sb.append("FARMER_TEL_EXT,FARMER_PROFILE,USER_LAST_LOGIN_TIME,");
+			sb.append("USER_APPLY_DATE,USER_EMAIL_VAL_CODE ");
+			sb.append("FROM SUSER WHERE USER_EMAIL=? ");
+			stmt = conn.prepareStatement(sb.toString());
+			sb.setLength(0);
+
+			stmt.setString(1, userEmail);
+			rset = stmt.executeQuery();
+			if (rset.next()) {
 				result = new MemberBean();
 				result.setUserOid(rset.getInt("USER_OID"));
 				result.setUserEmail(rset.getString("USER_EMAIL"));
@@ -56,63 +63,35 @@ public class MemberDAO {
 				result.setUserApplyDate(rset.getTimestamp("USER_APPLY_DATE"));
 				result.setUserEmailValCode(rset.getString("USER_EMAIL_VAL_CODE"));
 			}
-		} catch (SQLException e) {  
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
-			if(rset != null){
+		} finally {
+			if (rset != null) {
 				try {
 					rset.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
 			}
-			if(stmt != null){
+			if (stmt != null) {
 				try {
 					stmt.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			if(conn != null){
+			if (conn != null) {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
 		return result;
 	}
-	
-	public final String SELECT = "SELECT USER_OID,USER_NAME,USER_EMAIL,USER_PASSWD,USER_STATUS,USER_ZIP_CODE,USER_ADDRESS,USER_MOBILE,USER_MOBILE,USER_TEL_EXT,FARMER_ZIP_CODE,FARMER_ADDRESS,FARMER_ADDRESS,FARMER_TEL,FARMER_TEL_EXT,FARMER_PROFILE,USER_LAST_LOGIN_TIME,USER_APPLY_DATE,USER_EMAIL_VAL_CODE FROM SUSER WHERE USER_EMAIL=?";
 
-	final MemberBean findByPrimaryKey(String email) {
-		MemberBean mb = new MemberBean();
-		try (Connection conn = ds.getConnection(); 
-				PreparedStatement stmt = conn.prepareStatement(SELECT);) {
-			stmt.setString(1, email);
-			try (ResultSet rs = stmt.executeQuery();) {
-				if (rs.next()) {
-//					String password = rs.getString(2);
-//					String checkpassword = rs.getString(3);
-					mb.setUserEmail(rs.getString("USER_EMAIL"));
-					MemberBean user = new MemberBean(email);
-
-					return user;
-				}
-
-			}
-
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	private static final String INSERT = "INSERT INTO suser(user_email, user_name, user_passwd, USER_APPLY_DATE)"
+	private  String INSERT = "INSERT INTO SUSER(USER_EMAIL,USER_NAME,USER_PASSWD,USER_APPLY_DATE)"
 			+ " values (?, ?, ?, ?)";
 
 	public void insertUser(MemberBean bean) {
@@ -126,4 +105,33 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+	private String update = "UPDATE SUSER SET USER_NAME=?,USER_PASSWD=?,USER_ZIP_CODE=?,"
+			+ " USER_ADDRESS=?,USER_MOBILE=?,USER_TEL=?,USER_TEL_EXT=?,FARMER_ZIP_CODE=?,"
+			+ " FARMER_ADDRESS=?,FARMER_MOBILE=?,FARMER_TEL=?,FARMER_TEL_EXT=?,FARMER_PROFILE=?,USER_LAST_LOGIN_TIME=SYSDATE()"
+			+ " WHERE USER_EMAIL=?";
+	public int update(MemberBean bean) {
+
+		int updateCount = 0;
+		try (Connection conn = ds.getConnection(); PreparedStatement stmt = conn.prepareStatement(update);) {
+			stmt.setString(1, bean.getUserName());
+			stmt.setString(2, bean.getUserPasswd());
+			stmt.setString(3, bean.getUserZipCode());
+			stmt.setString(4, bean.getUserAddress());
+			stmt.setString(5, bean.getUserMobile());
+			stmt.setString(6, bean.getUserTel());
+			stmt.setString(7, bean.getUserTelExt());
+			stmt.setString(8, bean.getFarmerZipCode());
+			stmt.setString(9, bean.getFarmerAddress());
+			stmt.setString(10, bean.getFarmerMobile());
+			stmt.setString(11, bean.getFarmerTel());
+			stmt.setString(12, bean.getFarmerTelExt());
+			stmt.setClob(13, bean.getFarmerProfile());
+			updateCount = stmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return updateCount;
+	}
+
 }
