@@ -13,6 +13,6 @@
 	<h2>電子信箱${MemberBean.email}的資料申請成功</h2>
 	<br>
 
-	<a href="prototype/manage/loginHome.html">回首頁</a>
+	<a href="home.jsp">回首頁</a>
 </body>
 </html>
