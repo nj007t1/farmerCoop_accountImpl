@@ -14,6 +14,7 @@
 			value="${param.email}">
 		<div style="color: red; font-size: 60%">${ErrorMsg.email}</div>
 
+<<<<<<< HEAD
 		<br> 密碼: <input name="pswd" type="password" size="8"
 			value="${param.pswd}">
 
@@ -22,6 +23,14 @@
 		<br> 確認密碼: <input name="againpswd" type="password" size="8"
 			value="${param.againpswd}">
 		<div style="color: red; font-size: 60%">${ErrorMsg.againpassword}</div>
+=======
+		<br> 密碼: <input name="pswd" type="password" size="20" value="${param.pswd}">
+
+		<div style="color: red; font-size: 60%">${ErrorMsg.password}</div>
+
+		<br> 確認密碼: <input name="againpswd" type="password" size="20" value="${param.againpswd}">
+		<div style="color: red; font-size: 60%">${ErrorMsg.checkPassword}</div>
+>>>>>>> cf11da6e7a44030bcb4102e6778a03c2e74d6e9b
 
 		<br> <input type="submit" value="確認申請">
 	</form>
