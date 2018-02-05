@@ -1,17 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?> 
-<Context displayName="Java007_Work" docBase="Java007_Work" path="/Java007_Work" reloadable="true">
-  <!--               SQLServer(範例程式會用到的DataSource)       -->
-  <Resource name="jdbc/sUserDataBase" type="javax.sql.DataSource"
-<<<<<<< HEAD
-      username="root" password="password"
-=======
-      username="admin" password="1a2b"
->>>>>>> cf11da6e7a44030bcb4102e6778a03c2e74d6e9b
-      driverClassName="com.mysql.jdbc.Driver"
-      url="jdbc:mysql://localhost:3306/fcdb"
-      connectionProperties="useSSL=true;useUnicode=yes;characterEncoding=utf8"
-      maxActive="8"
-      maxIdle="4"
-      maxWait="5000"
-  />
+<!DOCTYPE xml>
+<Context displayName="Java007_Work" docBase="Java007_Work" path="/Java007_Work"
+	reloadable="true">
+	<!-- SQLServer(範例程式會用到的DataSource) -->
+	<Resource name="jdbc/sUserDataBase" type="javax.sql.DataSource"
+		username="admin" password="1a2b" driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/fcdb" connectionProperties="useSSL=true;useUnicode=yes;characterEncoding=utf8"
+		maxActive="8" maxIdle="4" maxWait="5000" />
 </Context>
