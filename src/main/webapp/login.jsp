@@ -11,30 +11,15 @@
 	<jsp:include page="/fragment/top.jsp" />
 	<fieldset>
 		<legend>登入會員</legend>
-<<<<<<< HEAD
 		<form action="<c:url value='/login.do' />" method="POST">
-			<span>E-mail</span> <input type="text" name="userMail"> <font
-				color='red' size='-1'>${errorMasgKey.mailEmptyError}</font>
+			<span>E-mail</span> <input type="text" name="userMail"
+				value="${param.userMail}"> <font color='red' size='-1'>${errorMasgKey.mailEmptyError}</font>
 			<p />
-
-			<span>Password</span> <input type="password" name="userPassword">
-			<font color='red' size='-1'>${errorMasgKey.passwordEmptyError}</font>
+			<span>Password</span> <input type="password" name="userPassword"
+				value="${param.userPassword}"> <font color='red' size='-1'>${errorMasgKey.passwordEmptyError}</font>
 			<p />
 			<input type='checkbox'>記住密碼 <input type="submit" value="登入">
 			<font color='red' size='-1'>${errorMasgKey.loginError}</font>
-=======
-		<form action="<c:url value='/login.do' />"  method="POST">
-		<span>E-mail</span>
-		<input type="text" name="userMail" value="${param.userMail}">
-		<font color='red' size='-1'>${errorMasgKey.mailEmptyError}</font><p/>
-		
-		<span>Password</span>
-		<input type="password" name="userPassword" value="${param.userPassword}">
-		<font color='red' size='-1'>${errorMasgKey.passwordEmptyError}</font><p/>
-		<input type='checkbox'>記住密碼
-		<input type="submit" value="登入">
-		<font color='red' size='-1'>${errorMasgKey.loginError}</font>
->>>>>>> cf11da6e7a44030bcb4102e6778a03c2e74d6e9b
 		</form>
 	</fieldset>
 </body>
