@@ -178,6 +178,7 @@ public class MemberBean {
 	}
 
 	public void setUserLastLoginTime(Timestamp userLastLoginTime) {
+		//這個物件的屬性等於這個參數
 		this.userLastLoginTime = userLastLoginTime;
 	}
 

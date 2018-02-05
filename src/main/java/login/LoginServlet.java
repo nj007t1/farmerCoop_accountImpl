@@ -1,7 +1,8 @@
 package login;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,36 +39,21 @@ public class LoginServlet extends HttpServlet {
 			errorMsgMap.put("passwordEmptyError", "請輸入密碼");
 			System.out.println("servlet: empty password");
 		}
-		
-		
-//		
-//		MemberDAO dao = new MemberDAO();
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddHHmmss");
-//		java.sql.Timestamp applyDate = new java.sql.Timestamp(System.currentTimeMillis());
-//		String key = sdf.format(applyDate);
-//		String encrypt = SecurityUtils.encryptString(key, userPassword);
-//		MemberBean bean = new MemberBean(userMail, userMail, encrypt, applyDate);
-//		dao.select(bean);
-		
-		
-		
-		
-		
+
 		LoginService ls = new LoginService();
 		MemberBean mb = ls.checkLoginInfo(userMail, userPassword);
 
 		if (mb != null) {
+			Timestamp userLastLoginTime = new Timestamp(new Date().getTime());
+			mb.setUserLastLoginTime(userLastLoginTime);
+			MemberDAO dao = new MemberDAO();
+			dao.update(mb);
+
 			session.setAttribute("LoginOK", mb);
 			System.out.println("servlet: login OK");
 		} else {
 			errorMsgMap.put("loginError", "帳號不存在或密碼不正確");
 			System.out.println("servlet: login FAILED~");
-		}
-
-		if (!errorMsgMap.isEmpty()) {
-			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
-			rd.forward(request, response);
-			return;
 		}
 		if (errorMsgMap.isEmpty()) {
 			String contextPath = getServletContext().getContextPath();
@@ -79,6 +65,10 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect(contextPath + "/home.jsp");
 				System.out.println("回首頁");
 			}
+			return;
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("/login.jsp");
+			rd.forward(request, response);
 			return;
 		}
 	}

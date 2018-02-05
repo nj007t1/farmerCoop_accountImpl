@@ -12,12 +12,12 @@
 		申請帳號 <br> 電子信箱: <input name="email" type="text" size="20" value="${param.email}">
 		<div style="color: red; font-size: 60%">${ErrorMsg.email}</div>
 
-		<br> 密碼: <input name="pswd" type="password" size="8" value="${param.pswd}">
+		<br> 密碼: <input name="pswd" type="password" size="20" value="${param.pswd}">
 
 		<div style="color: red; font-size: 60%">${ErrorMsg.password}</div>
 
-		<br> 確認密碼: <input name="againpswd" type="password" size="8" value="${param.againpswd}">
-		<div style="color: red; font-size: 60%">${ErrorMsg.againpassword}</div>
+		<br> 確認密碼: <input name="againpswd" type="password" size="20" value="${param.againpswd}">
+		<div style="color: red; font-size: 60%">${ErrorMsg.checkPassword}</div>
 
 		<br> <input type="submit" value="確認申請">
 	</form>

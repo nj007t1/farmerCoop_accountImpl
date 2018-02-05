@@ -8,13 +8,13 @@
 </head>
 <body>
 	<form action="" method="POST">
-		編輯會員<br>
-		姓:<input name="lastname" type="text" size="5" value="${param.lastname}">
+		編輯農民會員<br>
+		姓氏:<input name="lastname" type="text" size="5" value="${param.lastname}">
 		<div style="color:red;font-size:60%"></div> 
-		名:<input name="name" type="text" size="15" value="${param.name}">
+		名字:<input name="name" type="text" size="15" value="${param.name}">
 		<div style="color:red;font-size:60%"></div>
-		電子信箱:<input name="email" type="text" size="20" value="${param.email}">
-		<div style="color:red;font-size:60%">${ErrorMsg.email}</div>
+		農民地址:<input name="farmerAddress" type="text" value="${param.farmerAddress}">
+		
 	</form>
 </body>
 </html>

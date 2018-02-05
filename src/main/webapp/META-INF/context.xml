@@ -2,9 +2,9 @@
 <Context displayName="Java007_Work" docBase="Java007_Work" path="/Java007_Work" reloadable="true">
   <!--               SQLServer(範例程式會用到的DataSource)       -->
   <Resource name="jdbc/sUserDataBase" type="javax.sql.DataSource"
-      username="root" password="1l31o4"
+      username="admin" password="1a2b"
       driverClassName="com.mysql.jdbc.Driver"
-      url="jdbc:mysql://localhost:3306/farmer_coop"
+      url="jdbc:mysql://localhost:3306/fcdb"
       connectionProperties="useSSL=true;useUnicode=yes;characterEncoding=utf8"
       maxActive="8"
       maxIdle="4"

@@ -11,6 +11,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class MemberDAO {
+
 	DataSource ds = null;
 
 	public MemberDAO() {
@@ -91,7 +92,7 @@ public class MemberDAO {
 		return result;
 	}
 
-	private  String INSERT = "INSERT INTO SUSER(USER_EMAIL,USER_NAME,USER_PASSWD,USER_APPLY_DATE)"
+	private String INSERT = "INSERT INTO SUSER(USER_EMAIL,USER_NAME,USER_PASSWD,USER_APPLY_DATE)"
 			+ " values (?, ?, ?, ?)";
 
 	public void insertUser(MemberBean bean) {
@@ -105,15 +106,17 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+
 	private String update = "UPDATE SUSER SET USER_NAME=?,USER_PASSWD=?,USER_ZIP_CODE=?,"
 			+ " USER_ADDRESS=?,USER_MOBILE=?,USER_TEL=?,USER_TEL_EXT=?,FARMER_ZIP_CODE=?,"
-			+ " FARMER_ADDRESS=?,FARMER_MOBILE=?,FARMER_TEL=?,FARMER_TEL_EXT=?,FARMER_PROFILE=?,USER_LAST_LOGIN_TIME=SYSDATE()"
+			+ " FARMER_ADDRESS=?,FARMER_MOBILE=?,FARMER_TEL=?,FARMER_TEL_EXT=?,FARMER_PROFILE=?,USER_LAST_LOGIN_TIME=?"
 			+ " WHERE USER_EMAIL=?";
+
 	public int update(MemberBean bean) {
 
 		int updateCount = 0;
 		try (Connection conn = ds.getConnection(); PreparedStatement stmt = conn.prepareStatement(update);) {
-			stmt.setString(1, bean.getUserName());
+			stmt.setString(1, bean.getUserEmail());
 			stmt.setString(2, bean.getUserPasswd());
 			stmt.setString(3, bean.getUserZipCode());
 			stmt.setString(4, bean.getUserAddress());
@@ -126,6 +129,9 @@ public class MemberDAO {
 			stmt.setString(11, bean.getFarmerTel());
 			stmt.setString(12, bean.getFarmerTelExt());
 			stmt.setClob(13, bean.getFarmerProfile());
+			java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
+			stmt.setTimestamp(14, now);
+			stmt.setString(15, bean.getUserEmail());
 			updateCount = stmt.executeUpdate();
 
 		} catch (SQLException e) {

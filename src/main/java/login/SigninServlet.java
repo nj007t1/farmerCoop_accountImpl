@@ -26,7 +26,8 @@ public class SigninServlet extends HttpServlet {
 		super.doGet(req, resp);
 		doPost(req, resp);
 	}
-	//信箱格式
+
+	// 信箱格式
 	private boolean validateMail(String email) {
 
 		String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
@@ -52,33 +53,32 @@ public class SigninServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF8");
-		
+
 		Map<String, String> errorMessage = new HashMap<>();
 		request.setAttribute("ErrorMsg", errorMessage);
-		
+		// signin.jsp(email裡面input的name)
 		String email = request.getParameter("email");
 		if (email == null || email.trim().length() == 0) {
 			errorMessage.put("email", "必須輸入電子信箱");
 		} else if (!validateMail(email)) {
 			errorMessage.put("email", "信箱格式不正確");
 		}
-		
+
 		String password = request.getParameter("pswd");
 		if (password == null || password.trim().length() == 0) {
 			errorMessage.put("password", "必須輸入密碼");
-		}
-		String againpassword = request.getParameter("againpswd");
-		if (againpassword == null || againpassword.trim().length() == 0) {
-			errorMessage.put("againpassword", "必須輸入確認密碼");
-		}
-		if ((password.length() > 20) || (password.length() < 8)) {
+		} else if ((password.length() > 20) || (password.length() < 8)) {
 			errorMessage.put("password", "密碼長度需8-20個字元");
-		}
-		if (!password.matches("^(?=.*\\d)(?=.*[a-zA-Z]).{8,20}$")) {
+		} else if (!password.matches("^(?=.*\\d)(?=.*[a-zA-Z]).{8,20}$")) {
 			errorMessage.put("password", "密碼須包含英文、數字");
 		}
-		if (!password.equals(againpassword)) {
-			errorMessage.put("againpassword", "兩次密碼不一致");
+		String checkPassword = request.getParameter("againpswd");
+		if (checkPassword == null || checkPassword.trim().length() == 0) {
+			errorMessage.put("checkPassword", "必須輸入確認密碼");
+		}
+
+		if (!password.equals(checkPassword)) {
+			errorMessage.put("checkPassword", "兩次密碼不一致");
 		}
 
 		MemberDAO dao = new MemberDAO();
@@ -86,18 +86,18 @@ public class SigninServlet extends HttpServlet {
 		if (userBean != null) {
 			errorMessage.put("email", "電子信箱重複,請重新輸入");
 		}
-		
-		//密碼加密
-		java.sql.Timestamp applyDate =  new  java.sql.Timestamp(System.currentTimeMillis());//取得現在時間
-		String encrypt =  SecurityUtils.getEncryptPassword(password, applyDate);//時間與密碼進行加密
-		
+
+		// 密碼加密
+		java.sql.Timestamp applyDate = new java.sql.Timestamp(System.currentTimeMillis());// 取得現在時間
+		String encrypt = SecurityUtils.getEncryptPassword(password, applyDate);// 時間與密碼進行加密
+
 		if (!errorMessage.isEmpty()) {
 			RequestDispatcher rd = request.getRequestDispatcher("/signin.jsp");
 			rd.forward(request, response);
 			return;
 		}
-		
-		MemberBean user = new MemberBean(email, email, encrypt,applyDate);
+
+		MemberBean user = new MemberBean(email, email, encrypt, applyDate);
 		dao.insertUser(user);
 		request.setAttribute("userBean", user);
 

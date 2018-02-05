@@ -11,8 +11,10 @@
 	<c:choose>
 		<c:when test="${empty LoginOK}">
 			<a href="login.jsp">登入</a>
+
 		</c:when>
 		<c:otherwise>	
+				<a href="changePassword.jsp">修改密碼</a>
 				<a href="loginOut.jsp">登出</a>
 		</c:otherwise>
 	</c:choose>
