@@ -8,7 +8,8 @@
 <title>修改密碼</title>
 </head>
 <body>
-	<form action="changePassword.do" method="post">
+<jsp:include page="/fragment/top.jsp" />
+	<form action="../changePassword.do" method="post">
 		變更會員登入密碼<br> 舊密碼:<input name='password' Type='password' size='20'
 			value="${param.password}"><br>
 		<div style="color: red; font-size: 60%">${ErrorMsg.password}</div>

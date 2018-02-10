@@ -10,7 +10,9 @@
 </head>
 <body>
 	<jsp:include page="/fragment/top.jsp" />
+	
 	<h1>登出成功</h1>
+	
 	<a href="home.jsp">回首頁</a>
 </body>
 </html>

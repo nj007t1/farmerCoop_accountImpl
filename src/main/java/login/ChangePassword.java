@@ -58,7 +58,7 @@ public class ChangePassword extends HttpServlet {
 		}
 
 		if (!errorMessage.isEmpty()) {
-			RequestDispatcher rd = request.getRequestDispatcher("/changePassword.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/manage/changePassword.jsp");
 			rd.forward(request, response);
 			return;
 		}

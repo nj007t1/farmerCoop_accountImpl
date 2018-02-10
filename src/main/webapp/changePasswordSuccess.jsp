@@ -9,6 +9,7 @@
 </head>
 <body>
 <form action="changepassword.do" method="post"></form>
+<jsp:include page="/fragment/top.jsp" />
 <h1>成功更換密碼</h1>
 
 

@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 import javax.crypto.BadPaddingException;
@@ -11,7 +12,12 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
+
+import org.omg.CORBA.Request;
 
 public class SecurityUtils {
 
@@ -43,7 +49,7 @@ public class SecurityUtils {
 		return buffer.toString();
 	}
 
-	// 本方法可對加密之字串(Ciphertext)解密，key為當初加密時的金鑰，傳回值為解密後的字串(Plaintext)
+	// 本方法可(Ciphertext)加密
 	// 無IV版本
 	public static String encryptString(String key, String message) {
 

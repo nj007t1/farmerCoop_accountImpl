@@ -7,7 +7,9 @@
 	</c:when>
 	<c:otherwise>
 		<a href="${pageContext.request.contextPath}/loginOut.jsp">登出</a>
+		<a href="${pageContext.request.contextPath}/manage/changePassword.jsp">修改密碼</a>
 	</c:otherwise>
 </c:choose>
+
 <a href="${pageContext.request.contextPath}/signin.jsp">註冊</a>
 <a href="${pageContext.request.contextPath}/manage/loginHome.jsp">需要登入才能預覽</a>

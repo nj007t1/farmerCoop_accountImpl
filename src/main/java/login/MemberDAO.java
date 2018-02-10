@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -100,6 +102,11 @@ public class MemberDAO {
 			stmt.setString(1, bean.getUserEmail());
 			stmt.setString(2, bean.getUserName());
 			stmt.setString(3, bean.getUserPasswd());
+			//因為我們取得目前的Timestamp會有大於等於五百的毫秒,
+			//存到資料庫會四捨五入,所以要去除毫秒	
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String datetime = sdf.format(bean.getUserApplyDate());
+			bean.setUserApplyDate(Timestamp.valueOf(datetime));	
 			stmt.setTimestamp(4, bean.getUserApplyDate());
 			stmt.executeUpdate();
 		} catch (SQLException e) {

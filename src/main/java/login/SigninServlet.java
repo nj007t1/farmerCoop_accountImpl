@@ -1,6 +1,7 @@
 package login;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -86,8 +87,19 @@ public class SigninServlet extends HttpServlet {
 		if (userBean != null) {
 			errorMessage.put("email", "電子信箱重複,請重新輸入");
 		}
-
 		// 密碼加密
+		// 測試 取得毫秒是大於五百及小於五百秒數進位的狀況
+//		String text = "2018-02-20 06:35:40:022";
+//		SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss:SSS");
+//		java.util.Date applyDateTest=null;
+//		try {
+//			applyDateTest = sdf.parse(text);
+//		} catch (ParseException e) {
+//				e.printStackTrace();
+//		}
+//		java.sql.Timestamp applyDate = new java.sql.Timestamp(applyDateTest.getTime());// 取得現在時間
+		
+		
 		java.sql.Timestamp applyDate = new java.sql.Timestamp(System.currentTimeMillis());// 取得現在時間
 		String encrypt = SecurityUtils.getEncryptPassword(password, applyDate);// 時間與密碼進行加密
 

@@ -28,6 +28,10 @@ public class MemberBean {
 		super();
 	}
 
+	
+	
+
+
 	public MemberBean(String userEmail) {
 		super();
 		this.userEmail = userEmail;
