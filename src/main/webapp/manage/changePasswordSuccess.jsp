@@ -8,7 +8,6 @@
 <title>修改密碼成功</title>
 </head>
 <body>
-<form action="changepassword.do" method="post"></form>
 <h1>成功更換密碼</h1>
 
 

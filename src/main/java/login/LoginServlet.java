@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
@@ -26,7 +27,8 @@ public class LoginServlet extends HttpServlet {
 		request.setAttribute("errorMasgKey", errorMsgMap);
 		String userMail = request.getParameter("userMail");
 		String userPassword = request.getParameter("userPassword");
-
+		
+		
 		System.out.println("servlet: 進入servlet");
 
 		if (userMail == null || userMail.trim().length() == 0) {
@@ -48,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 			mb.setUserLastLoginTime(userLastLoginTime);
 			MemberDAO dao = new MemberDAO();
 			dao.update(mb);
-
+			dao.findByEmail(userMail);
 			session.setAttribute("LoginOK", mb);
 			System.out.println("servlet: login OK");
 		} else {

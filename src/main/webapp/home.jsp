@@ -8,19 +8,7 @@
 <title>Home</title>
 </head>
 <body>
-	<c:choose>
-		<c:when test="${empty LoginOK}">
-			<a href="login.jsp">登入</a>
-
-		</c:when>
-		<c:otherwise>	
-				<a href="changePassword.jsp">修改密碼</a>
-				<a href="loginOut.jsp">登出</a>
-		</c:otherwise>
-	</c:choose>
-	
-	<a href="signin.jsp">註冊</a>
+	<jsp:include page="/fragment/top.jsp" />
 	<h1>這是首頁</h1>
-	<a href="<c:url value='manage/loginHome.jsp' />">需要登入才能預覽</a>
 </body>
 </html>
