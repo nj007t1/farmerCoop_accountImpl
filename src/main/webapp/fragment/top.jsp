@@ -13,3 +13,4 @@
 
 <a href="${pageContext.request.contextPath}/signin.jsp">註冊</a>
 <a href="${pageContext.request.contextPath}/manage/loginHome.jsp">需要登入才能預覽</a>
+<a href="${pageContext.request.contextPath}/manage/farmerProfile.jsp">編輯名簡介</a>

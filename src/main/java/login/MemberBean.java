@@ -19,7 +19,7 @@ public class MemberBean {
 	String farmerMobile;
 	String farmerTel;
 	String farmerTelExt;
-	Clob farmerProfile;
+	String farmerProfile;
 	Timestamp userLastLoginTime;
 	Timestamp userApplyDate;
 	String userEmailValCode;
@@ -48,6 +48,23 @@ public class MemberBean {
 		this(userName, userEmail, userPasswd);
 		this.userApplyDate = userApplyDate;
 	}
+
+	
+	
+
+
+
+
+
+	public MemberBean(String userEmail, String farmerProfile) {
+		super();
+		this.userEmail = userEmail;
+		this.farmerProfile = farmerProfile;
+	}
+
+
+
+
 
 	public int getUserOid() {
 		return userOid;
@@ -169,11 +186,11 @@ public class MemberBean {
 		this.farmerTelExt = farmerTelExt;
 	}
 
-	public Clob getFarmerProfile() {
+	public String getFarmerProfile() {
 		return farmerProfile;
 	}
 
-	public void setFarmerProfile(Clob farmerProfile) {
+	public void setFarmerProfile(String farmerProfile) {
 		this.farmerProfile = farmerProfile;
 	}
 

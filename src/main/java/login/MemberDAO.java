@@ -6,11 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Vector;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 
 public class MemberDAO {
 
@@ -26,6 +29,7 @@ public class MemberDAO {
 
 	}
 
+	
 	StringBuilder sb = new StringBuilder();
 
 	public MemberBean findByEmail(String userEmail) {
@@ -61,7 +65,7 @@ public class MemberDAO {
 				result.setFarmerAddress(rset.getString("FARMER_ADDRESS"));
 				result.setFarmerMobile(rset.getString("FARMER_MOBILE"));
 				result.setFarmerTel(rset.getString("FARMER_TEL"));
-				result.setFarmerProfile(rset.getClob("FARMER_PROFILE"));
+				result.setFarmerProfile(rset.getString("FARMER_PROFILE"));
 				result.setUserLastLoginTime(rset.getTimestamp("USER_LAST_LOGIN_TIME"));
 				result.setUserApplyDate(rset.getTimestamp("USER_APPLY_DATE"));
 				result.setUserEmailValCode(rset.getString("USER_EMAIL_VAL_CODE"));
@@ -135,7 +139,7 @@ public class MemberDAO {
 			stmt.setString(10, bean.getFarmerMobile());
 			stmt.setString(11, bean.getFarmerTel());
 			stmt.setString(12, bean.getFarmerTelExt());
-			stmt.setClob(13, bean.getFarmerProfile());
+			stmt.setString(13, bean.getFarmerProfile());
 			java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
 			stmt.setTimestamp(14, now);
 			stmt.setString(15, bean.getUserEmail());
@@ -146,5 +150,25 @@ public class MemberDAO {
 		}
 		return updateCount;
 	}
-
+	//修改農名簡介
+	private String UPDATEFARMERPROFILE = "update suser set farmer_profile=?"
+			+ " where user_email=?";
+			
+	public void updateFarmerProfile(MemberBean bean){
+		
+		try(Connection conn = ds.getConnection();
+			PreparedStatement stmt = conn.prepareStatement(UPDATEFARMERPROFILE)
+			){
+				stmt.setString(1,bean.getFarmerProfile());
+				stmt.setString(2,bean.getUserEmail());
+				stmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 }
+
+
