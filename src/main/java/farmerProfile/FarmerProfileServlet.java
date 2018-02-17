@@ -3,6 +3,8 @@ package farmerProfile;
 import java.io.IOException;
 import java.lang.reflect.Member;
 import java.sql.Clob;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,35 +36,34 @@ public class FarmerProfileServlet extends HttpServlet {
 		MemberBean mb = (MemberBean) session.getAttribute("LoginOK");
 		MemberDAO dao = new MemberDAO();
 		
-	
-		if(mb!=null){
-				//將String轉成Clob後再放入第二個建構子參數中
-				//MemberBean FPBean = new MemberBean(mb.getUserEmail(),stringToClob(farmerProfile));
-				String farmerProfile = request.getParameter("farmerProfile");
-				
-				MemberBean FPBean = new MemberBean(mb.getUserEmail(),farmerProfile);
-				dao.updateFarmerProfile(FPBean);
-				
+		if (mb != null) {
+			// 將String轉成Clob後再放入第二個建構子參數中
+			// MemberBean FPBean = new
+			// MemberBean(mb.getUserEmail(),stringToClob(farmerProfile));
+			String farmerProfile = request.getParameter("farmerProfile");
+			mb.setFarmerProfile(farmerProfile);
+			MemberBean FPBean = new MemberBean(mb.getUserEmail(), farmerProfile);
+			dao.updateFarmerProfile(FPBean);
 		}
-		
-		
-		
-		
+//		RequestDispatcher rd = request.getRequestDispatcher("manage/farmerProfile.jsp");
+//		rd.forward(request, response);
+//		return;
 		response.sendRedirect("manage/farmerProfile.jsp");
 		return;
 
 	}
-	//將String轉成Clob的方法
+
+	// 將String轉成Clob的方法
 	public static Clob stringToClob(String str) {
-	    if (null == str)
-	        return null;
-	    else {
-	        try {
-	            java.sql.Clob c = new javax.sql.rowset.serial.SerialClob(str.toCharArray());
-	            return c;
-	        } catch (Exception e) {
-	            return null;
-	        }
-	    }
+		if (null == str)
+			return null;
+		else {
+			try {
+				java.sql.Clob c = new javax.sql.rowset.serial.SerialClob(str.toCharArray());
+				return c;
+			} catch (Exception e) {
+				return null;
+			}
+		}
 	}
 }
