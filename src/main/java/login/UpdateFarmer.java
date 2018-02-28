@@ -60,10 +60,10 @@ public class UpdateFarmer extends HttpServlet {
 			return;
 		}
 
-
-		
 		String farmerTelExt = request.getParameter("farmerTelExt");
 		String zipCode = request.getParameter("zipCode");
+
+		
 		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
 		memberBean.setuserLastName(farmerLastName);
 		memberBean.setUserFirstName(farmerFirstName);

@@ -8,8 +8,8 @@
 	<c:otherwise>
               <!-- pageContext隱含變數	   contextPath專案名稱 -->
 		<a href="${pageContext.request.contextPath}/loginOut.jsp">登出</a>
-		<a href="${pageContext.request.contextPath}/manage/updateConsumer.jsp">編輯消費者會員資料</a>
-		<a href="${pageContext.request.contextPath}/ZipCodeServlet.do">編輯農民會員資料</a>
+		<a href="${pageContext.request.contextPath}/zipCodeUserServlet.do">編輯消費者會員資料</a>
+		<a href="${pageContext.request.contextPath}/zipCodeServlet.do">編輯農民會員資料</a>
 		<a href="${pageContext.request.contextPath}/manage/changePassword.jsp">修改密碼</a>
 	</c:otherwise>
 </c:choose>

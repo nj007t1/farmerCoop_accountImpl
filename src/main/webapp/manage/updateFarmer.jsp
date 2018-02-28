@@ -15,7 +15,9 @@
 
 	<form action="updateFarmer.do" method="POST">
 		<h1>編輯農夫會員資料</h1>
-		<br> 姓氏:<input name="farmerLastName" type="text" size="5"
+		<br>
+		<label>電子信箱:${LoginOK.userEmail}</label><br>
+		 姓氏:<input name="farmerLastName" type="text" size="5"
 			value="${LoginOK.userLastName}${param.farmerLastName}">
 		<div style="color: red; font-size: 60%">${errorMsg.farmerLastName}</div>
 		名字:<input name="farmerFirstName" type="text" size="15"

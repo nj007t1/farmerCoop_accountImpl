@@ -35,7 +35,7 @@ public class MemberDAO {
 			conn = ds.getConnection();
 
 			sb.append("SELECT USER_OID,USER_LAST_NAME,USER_FIRST_NAME,USER_EMAIL,USER_PASSWD,USER_STATUS,");
-			sb.append("USER_ZIP_CODE,USER_ADDRESS,USER_MOBILE,USER_TEL_EXT,");
+			sb.append("USER_ZIP_CODE,USER_ADDRESS,USER_MOBILE,USER_TEL_EXT,USER_TEL,");
 			sb.append("FARMER_ZIP_CODE,FARMER_ADDRESS,FARMER_MOBILE,FARMER_TEL,");
 			sb.append("FARMER_TEL_EXT,FARMER_PROFILE,USER_LAST_LOGIN_TIME,");
 			sb.append("USER_APPLY_DATE,USER_EMAIL_VAL_CODE ");
@@ -57,6 +57,7 @@ public class MemberDAO {
 				result.setUserAddress(rset.getString("USER_ADDRESS"));
 				result.setUserMobile(rset.getString("USER_MOBILE"));
 				result.setUserTelExt(rset.getString("USER_TEL_EXT"));
+				result.setUserTel(rset.getString("USER_TEL"));
 				result.setFarmerZipCode(rset.getString("FARMER_ZIP_CODE"));
 				result.setFarmerAddress(rset.getString("FARMER_ADDRESS"));
 				result.setFarmerMobile(rset.getString("FARMER_MOBILE"));

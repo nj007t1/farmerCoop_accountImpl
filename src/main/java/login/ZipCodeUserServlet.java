@@ -12,13 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-@WebServlet("/zipCodeServlet.do")
-public class ZipCodeServlet extends HttpServlet {
+/**
+ * Servlet implementation class ZipCodeUserServlet
+ */
+@WebServlet("/zipCodeUserServlet.do")
+public class ZipCodeUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		doPost(request,response);
 	}
 
 	
@@ -33,13 +34,9 @@ public class ZipCodeServlet extends HttpServlet {
 		}
 		request.setAttribute("cities", cities);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/manage/updateFarmer.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/manage/updateConsumer.jsp");
 		rd.forward(request, response);
 		return;
-		
-//		RequestDispatcher rd2 = request.getRequestDispatcher("/manage/updateConsumer.jsp");
-//		rd2.forward(request, response);
-//		return;
 		
 	}
 
