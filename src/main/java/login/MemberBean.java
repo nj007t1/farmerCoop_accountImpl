@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 public class MemberBean {
 	int userOid;
 	String userName;
+	String userLastName;
+	String userFirstName;
 	String userEmail;
 	String userPasswd;
 	String userStatus;
@@ -20,6 +22,11 @@ public class MemberBean {
 	String farmerTel;
 	String farmerTelExt;
 	String farmerProfile;
+
+	String farmerBnkCode;
+	String farmerBnkAcctno;
+//	Clob farmerProfile;
+
 	Timestamp userLastLoginTime;
 	Timestamp userApplyDate;
 	String userEmailValCode;
@@ -73,6 +80,34 @@ public class MemberBean {
 	public void setUserOid(int userOid) {
 		this.userOid = userOid;
 	}
+
+	public String getFarmerBnkCode() {
+		return farmerBnkCode;
+	}
+
+
+
+
+	public void setFarmerBnkCode(String farmerBnkCode) {
+		this.farmerBnkCode = farmerBnkCode;
+	}
+
+
+
+
+	public String getFarmerBnkAcctno() {
+		return farmerBnkAcctno;
+	}
+
+
+
+
+	public void setFarmerBnkAcctno(String farmerBnkAcctno) {
+		this.farmerBnkAcctno = farmerBnkAcctno;
+	}
+
+
+
 
 	public String getUserName() {
 		return userName;
@@ -217,6 +252,22 @@ public class MemberBean {
 
 	public void setUserEmailValCode(String userEmailValCode) {
 		this.userEmailValCode = userEmailValCode;
+	}
+
+	public String getuserLastName() {
+		return userLastName;
+	}
+
+	public void setuserLastName(String userLastName) {
+		this.userLastName = userLastName;
+	}
+
+	public String getUserFirstName() {
+		return userFirstName;
+	}
+
+	public void setUserFirstName(String userFirstName) {
+		this.userFirstName = userFirstName;
 	}
 
 }

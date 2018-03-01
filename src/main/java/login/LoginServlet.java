@@ -29,8 +29,14 @@ public class LoginServlet extends HttpServlet {
 		request.setAttribute("errorMasgKey", errorMsgMap);
 		String userMail = request.getParameter("userMail");
 		String userPassword = request.getParameter("userPassword");
+
 		String rememberMe = request.getParameter("rememberMe");
 //		System.out.println("servlet: 進入servlet");
+
+		
+		
+		System.out.println("servlet: 進入servlet");
+
 
 		if (userMail == null || userMail.trim().length() == 0) {
 //			System.out.println("servlet: empty email");
@@ -51,7 +57,11 @@ public class LoginServlet extends HttpServlet {
 			mb.setUserLastLoginTime(userLastLoginTime);
 			MemberDAO dao = new MemberDAO();
 			dao.update(mb);
+
 			session.setAttribute("ApplyDate", mb.userApplyDate);
+
+			dao.findByEmail(userMail);
+
 			session.setAttribute("LoginOK", mb);
 //			System.out.println("servlet: login OK");
 		} else {

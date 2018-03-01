@@ -40,8 +40,8 @@ public class MemberDAO {
 		try {
 			conn = ds.getConnection();
 
-			sb.append("SELECT USER_OID,USER_NAME,USER_EMAIL,USER_PASSWD,USER_STATUS,");
-			sb.append("USER_ZIP_CODE,USER_ADDRESS,USER_MOBILE,USER_TEL_EXT,");
+			sb.append("SELECT USER_OID,USER_LAST_NAME,USER_FIRST_NAME,USER_EMAIL,USER_PASSWD,USER_STATUS,");
+			sb.append("USER_ZIP_CODE,USER_ADDRESS,USER_MOBILE,USER_TEL_EXT,USER_TEL,");
 			sb.append("FARMER_ZIP_CODE,FARMER_ADDRESS,FARMER_MOBILE,FARMER_TEL,");
 			sb.append("FARMER_TEL_EXT,FARMER_PROFILE,USER_LAST_LOGIN_TIME,");
 			sb.append("USER_APPLY_DATE,USER_EMAIL_VAL_CODE ");
@@ -54,6 +54,8 @@ public class MemberDAO {
 			if (rset.next()) {
 				result = new MemberBean();
 				result.setUserOid(rset.getInt("USER_OID"));
+				result.setuserLastName(rset.getString("USER_LAST_NAME"));
+				result.setUserFirstName(rset.getString("USER_FIRST_NAME"));
 				result.setUserEmail(rset.getString("USER_EMAIL"));
 				result.setUserPasswd(rset.getString("USER_PASSWD"));
 				result.setUserStatus(rset.getString("USER_STATUS"));
@@ -61,6 +63,7 @@ public class MemberDAO {
 				result.setUserAddress(rset.getString("USER_ADDRESS"));
 				result.setUserMobile(rset.getString("USER_MOBILE"));
 				result.setUserTelExt(rset.getString("USER_TEL_EXT"));
+				result.setUserTel(rset.getString("USER_TEL"));
 				result.setFarmerZipCode(rset.getString("FARMER_ZIP_CODE"));
 				result.setFarmerAddress(rset.getString("FARMER_ADDRESS"));
 				result.setFarmerMobile(rset.getString("FARMER_MOBILE"));
@@ -118,31 +121,35 @@ public class MemberDAO {
 		}
 	}
 
-	private String update = "UPDATE SUSER SET USER_NAME=?,USER_PASSWD=?,USER_ZIP_CODE=?,"
+	private String update = "UPDATE SUSER SET USER_NAME=?,USER_LAST_NAME=?,USER_FIRST_NAME=?,USER_PASSWD=?,USER_ZIP_CODE=?,"
 			+ " USER_ADDRESS=?,USER_MOBILE=?,USER_TEL=?,USER_TEL_EXT=?,FARMER_ZIP_CODE=?,"
-			+ " FARMER_ADDRESS=?,FARMER_MOBILE=?,FARMER_TEL=?,FARMER_TEL_EXT=?,FARMER_PROFILE=?,USER_LAST_LOGIN_TIME=?"
-			+ " WHERE USER_EMAIL=?";
+			+ " FARMER_ADDRESS=?,FARMER_MOBILE=?,FARMER_TEL=?,FARMER_TEL_EXT=?,"
+			+ " FARMER_PROFILE=?,FARMER_BNK_CODE=?,FARMER_BNK_ACCTNO=?,USER_LAST_LOGIN_TIME=?" + " WHERE USER_EMAIL=?";
 
 	public int update(MemberBean bean) {
 
 		int updateCount = 0;
 		try (Connection conn = ds.getConnection(); PreparedStatement stmt = conn.prepareStatement(update);) {
 			stmt.setString(1, bean.getUserEmail());
-			stmt.setString(2, bean.getUserPasswd());
-			stmt.setString(3, bean.getUserZipCode());
-			stmt.setString(4, bean.getUserAddress());
-			stmt.setString(5, bean.getUserMobile());
-			stmt.setString(6, bean.getUserTel());
-			stmt.setString(7, bean.getUserTelExt());
-			stmt.setString(8, bean.getFarmerZipCode());
-			stmt.setString(9, bean.getFarmerAddress());
-			stmt.setString(10, bean.getFarmerMobile());
-			stmt.setString(11, bean.getFarmerTel());
-			stmt.setString(12, bean.getFarmerTelExt());
-			stmt.setString(13, bean.getFarmerProfile());
+			stmt.setString(2, bean.getuserLastName());
+			stmt.setString(3, bean.getUserFirstName());
+			stmt.setString(4, bean.getUserPasswd());
+			stmt.setString(5, bean.getUserZipCode());
+			stmt.setString(6, bean.getUserAddress());
+			stmt.setString(7, bean.getUserMobile());
+			stmt.setString(8, bean.getUserTel());
+			stmt.setString(9, bean.getUserTelExt());
+			stmt.setString(10, bean.getFarmerZipCode());
+			stmt.setString(11, bean.getFarmerAddress());
+			stmt.setString(12, bean.getFarmerMobile());
+			stmt.setString(13, bean.getFarmerTel());
+			stmt.setString(14, bean.getFarmerTelExt());
+			stmt.setString(15, bean.getFarmerProfile());
+			stmt.setString(16, bean.getFarmerBnkCode());
+			stmt.setString(17, bean.getFarmerBnkAcctno());
 			java.sql.Timestamp now = new java.sql.Timestamp(System.currentTimeMillis());
-			stmt.setTimestamp(14, now);
-			stmt.setString(15, bean.getUserEmail());
+			stmt.setTimestamp(18, now);
+			stmt.setString(19, bean.getUserEmail());
 			updateCount = stmt.executeUpdate();
 
 		} catch (SQLException e) {

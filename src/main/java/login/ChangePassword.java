@@ -19,12 +19,18 @@ import javax.servlet.http.HttpSession;
 public class ChangePassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doPost(req, resp);
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		MemberDAO dao = new MemberDAO();
 		MemberBean memberBean = (MemberBean) session.getAttribute("LoginOK");
 		request.setCharacterEncoding("UTF-8");
+		session.setAttribute("memberBean", memberBean);
 		Map<String, String> errorMessage = new HashMap<>();
 		request.setAttribute("ErrorMsg", errorMessage);
 
@@ -64,12 +70,12 @@ public class ChangePassword extends HttpServlet {
 		}
 
 		// 密碼加密
-		
+
 		String newencrypt = SecurityUtils.getEncryptPassword(newPassword, memberBean.getUserApplyDate());
 		memberBean.setUserPasswd(newencrypt);
 		dao.update(memberBean);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/changePasswordSuccess.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/manage/changePasswordSuccess.jsp");
 		rd.forward(request, response);
 		return;
 
